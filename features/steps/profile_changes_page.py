@@ -1,19 +1,19 @@
-from PIL.TiffImagePlugin import SAVE_INFO
-from selenium.webdriver.common.by import By
+import selenium.webdriver.common.by
 from behave import given, when, then
 from time import sleep
 
-AGNT_NAME = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Fullname']")
-PHONE = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='number']")
-CMPY = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Company name']")
-YR_JOINED = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='When Joined Company 2']")
-CNT_EMAIL = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Email 2']")
-LANGUAGE = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Languages']")
-LIC_NUM = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='When joined company']")
-SOC_MEDIA = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Email']")
 
-SAVE_BTN = (By.CSS_SELECTOR, "div.save-changes-button[wized='saveButtonProfile']")
-CLOSE_BTN = (By.CSS_SELECTOR, "a.close-button.w-button[href='/settings']")
+AGNT_NAME = (selenium.webdriver.common.by.By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Fullname']")
+PHONE = (selenium.webdriver.common.by.By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='number']")
+CMPY = (selenium.webdriver.common.by.By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Company name']")
+YR_JOINED = (selenium.webdriver.common.by.By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='When Joined Company 2']")
+CNT_EMAIL = (selenium.webdriver.common.by.By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Email 2']")
+LANGUAGE = (selenium.webdriver.common.by.By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Languages']")
+LIC_NUM = (selenium.webdriver.common.by.By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='When joined company']")
+SOC_MEDIA = (selenium.webdriver.common.by.By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Email']")
+
+SAVE_BTN = (selenium.webdriver.common.by.By.CSS_SELECTOR, "div.save-changes-button[wized='saveButtonProfile']")
+CLOSE_BTN = (selenium.webdriver.common.by.By.CSS_SELECTOR, "a.close-button.w-button[href='/settings']")
 
 
 @when ('Enter some test information in the input fields')

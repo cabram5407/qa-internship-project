@@ -1,6 +1,5 @@
 # Created by cabram54 at 11/7/2024
-
-Feature: reelly setting and profile UI
+Feature: reelly UI setting and profile changes
 
   Scenario: User can go to settings and edit the personal information
   Given Open the main page
