@@ -1,9 +1,9 @@
 #This page is a blueprint, not connected to anything but defines how functions work.
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-
-
-from support.logger import logger
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class Page:
@@ -12,34 +12,33 @@ class Page:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)  # waits make the project stable
 
-
     def open(self, url):
-        logger.info(f'Opening page {url}')
         self.driver.get(url)
 
-
     def find_element(self, *locator):
-        logger.info(f'Searching for element by {locator}')
-        return self.driver.find_element(*locator)
-
+        return self.driver.find_element(*locator).click()
 
     def find_elements(self, *locator):
-        logger.info(f'Searching for elements by {locator}')
         return self.driver.find_elements(*locator)
 
+    def click(self, *locator):
+        self.driver.find_element(*locator).click()
+
+    def input_text(self, text, *locator):
+        self.driver.find_element(*locator).send_keys(text)
 
     def get_text(self, *locator):
         return self.find_element(*locator).text
 
-
-    def click(self, *locator):
-        logger.info(f'Clicking on element {locator}')
+    def scroll_to_element(self, *locator):
         self.driver.find_element(*locator).click()
 
 
-    def input_text(self, *locator, text):
-        logger.info(f'Inputting text for element {locator}')
-        self.driver.find_element(*locator).send_keys(text)
+    def wait_and_click(self, *locator):
+        element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(locator)
+        )
+        element.click()
 
 
     def wait_to_be_clickable(self, *locator):
@@ -48,19 +47,26 @@ class Page:
             message = f'Element by {locator} not clickable'
         )
 
-    def wait_to_be_clickable(self, *locator):
+    def wait_to_be_clickable_click(self, *locator):
         self.wait.until(
             EC.element_to_be_clickable(locator),
             message=f'Element by {locator} not clickable'
         ).click()
 
-    def wait_for_element_to_appear(self):
+
+    def scroll_until_element_appear(self, locator: object) -> object:
         self.wait.until(
             EC.visibility_of_element_located(locator),
             message=f'Element by {locator} did not appear'
         )
 
-    def wait_for_element_to_disappear(self):
+    def wait_for_element_to_appear(self, locator):
+        self.wait.until(
+            EC.visibility_of_element_located(locator),
+            message=f'Element by {locator} did not appear'
+        ).click()
+
+    def wait_for_element_to_disappear(self, locator):
         self.wait.until(
             EC.invisibility_of_element_located(locator),
             message=f'Element by {locator} still shown on page'
@@ -87,7 +93,7 @@ class Page:
 
 
     def verify_text(self, *locator, expected_text):
-        actual_text = self.find_element(*locator).text
+        actual_text = self.driver.find_element(*locator).text
         assert actual_text == expected_text, f'Expected {expected_text}, did not match {actual_text}'
 
 
