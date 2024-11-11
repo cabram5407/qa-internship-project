@@ -24,19 +24,19 @@ class ProfileUpdatePage(Page):
     def input_fields(self):
         sleep(3)
         self.input_text("test+Charmaine Abram+careerist", *self.AGENT_NAME)
-        sleep(3)
+
         self.input_text("+971+test+careerist", *self.PHONE)
-        sleep(3)
+
         self.input_text("Test", *self.CMPY)
-        sleep(3)
+
         self.input_text("2024", *self.YR_JOINED)
-        sleep(3)
+
         self.input_text("cabram1967@comcast.net", *self.CNT_EMAIL)
-        sleep(3)
+
         self.input_text("English", *self.LANGUAGE)
-        sleep(3)
+
         self.input_text("00000", *self.LIC_NUM)
-        sleep(3)
+
         self.input_text("https://www.careerist.com", *self.SOC_MEDIA)
         sleep(3)
 
