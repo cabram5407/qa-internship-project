@@ -5,8 +5,9 @@ from time import sleep
 
 @given('Open the main page')
 def open_reelly_page(context):
-    context.driver.get('https://soft.reelly.io')
-    sleep(3)
+    sleep(5)
+    context.app.login_page.open_page()
+    sleep(5)
 
 
 @when('Log in to the page')

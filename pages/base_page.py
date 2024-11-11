@@ -1,9 +1,11 @@
 #This page is a blueprint, not connected to anything but defines how functions work.
+from time import sleep
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
+# from selenium.webdriver.common.action_chains import ActionChains
 
 
 
@@ -17,7 +19,7 @@ class Page:
         self.driver.get(url)
 
     def find_element(self, *locator):
-        return self.driver.find_element(*locator).click()
+        return self.driver.find_element(*locator)
 
     def find_elements(self, *locator):
         return self.driver.find_elements(*locator)
@@ -25,8 +27,6 @@ class Page:
     def click(self, *locator):
         self.driver.find_element(*locator).click()
 
-    def input_text(self, text, *locator):
-        self.driver.find_element(*locator).send_keys(text)
 
     def get_text(self, *locator):
         return self.find_element(*locator).text
@@ -60,6 +60,14 @@ class Page:
             EC.visibility_of_element_located(locator),
             message=f'Element by {locator} did not appear'
         )
+
+    def input_text(self, text, *locator):
+         self.find_element(*locator).send_keys(text)
+        # self.driver.wait.until(
+        #     EC.visibility_of_element_located(locator),
+        #     message=f'Element by {locator} did not appear'
+        # ).send_keys(text)
+
 
     def wait_for_element_to_appear(self, locator):
         self.wait.until(

@@ -11,6 +11,7 @@ class SettingPage(Page):
 
 
     def navigate_to_setting(self):
+        sleep(10)
         self.wait_and_click(*self.SETTING_BTN)
         sleep(3)
 

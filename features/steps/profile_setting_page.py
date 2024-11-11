@@ -5,6 +5,6 @@ from time import sleep
 
 @when('Click on settings option')
 def user_setting(context):
-    sleep(3)
+    sleep(10)
     context.app.profile_setting_page.navigate_to_setting()
-    sleep(3)
+    # sleep(3)

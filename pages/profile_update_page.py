@@ -22,7 +22,7 @@ class ProfileUpdatePage(Page):
 
 
     def input_fields(self):
-        sleep(3)
+        self.driver.implicitly_wait(5)
         self.input_text("test+Charmaine Abram+careerist", *self.AGENT_NAME)
 
         self.input_text("+971+test+careerist", *self.PHONE)

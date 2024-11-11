@@ -5,5 +5,6 @@ from time import sleep
 
 @when('Click on Edit profile option')
 def edit_profile(context):
+    sleep(2)
     context.app.profile_edits_page.profile_edit()
     sleep(3)
