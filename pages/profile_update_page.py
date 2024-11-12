@@ -24,19 +24,12 @@ class ProfileUpdatePage(Page):
     def input_fields(self):
         self.driver.implicitly_wait(5)
         self.input_text("test+Charmaine Abram+careerist", *self.AGENT_NAME)
-
         self.input_text("+971+test+careerist", *self.PHONE)
-
         self.input_text("Test", *self.CMPY)
-
         self.input_text("2024", *self.YR_JOINED)
-
         self.input_text("cabram1967@comcast.net", *self.CNT_EMAIL)
-
         self.input_text("English", *self.LANGUAGE)
-
         self.input_text("00000", *self.LIC_NUM)
-
         self.input_text("https://www.careerist.com", *self.SOC_MEDIA)
         sleep(3)
 

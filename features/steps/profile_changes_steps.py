@@ -20,4 +20,4 @@ def close_save_changes(context):
     context.app.profile_update_page.check_buttons()
 
 
-    context.driver.close()
+    # context.driver.close()

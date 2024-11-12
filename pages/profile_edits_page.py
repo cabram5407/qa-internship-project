@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import Page
 
 class ProfileChange(Page):
-    # EDIT_PROF = (By.CSS_SELECTOR, "a.page-setting-block.w-inline-block[href='/profile-edit']")
     EDIT_PROF = (By.XPATH,"//a[@class='page-setting-block w-inline-block' and @href='/profile-edit']")
 
 

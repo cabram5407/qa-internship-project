@@ -19,7 +19,6 @@ class LoginPage(Page):
 
     def input_login_information(self):
         self.input_text("cabram1967@comcast.net", *self.EMAIL)
-        sleep(3)
         self.input_text("Blkgrl@Rck5407!", *self.PSWD)
         sleep(3)
         self.wait_and_click(*self.LOGIN_BTN)

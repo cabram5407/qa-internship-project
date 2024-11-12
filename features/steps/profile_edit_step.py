@@ -7,4 +7,4 @@ from time import sleep
 def edit_profile(context):
     sleep(2)
     context.app.profile_edits_page.profile_edit()
-    sleep(3)
+
