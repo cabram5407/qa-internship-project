@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 # from selenium.webdriver.common.action_chains import ActionChains
 
+from support.logger import logger
 
 class Page:
 
@@ -15,9 +16,11 @@ class Page:
         self.wait = WebDriverWait(driver, 10)  # waits make the project stable
 
     def open(self, url):
+        logger.info(f'Opening page {url}')
         self.driver.get(url)
 
     def find_element(self, *locator):
+        logger.info(f'Searching for element by {locator}')
         return self.driver.find_element(*locator)
 
     def find_elements(self, *locator):
@@ -61,7 +64,8 @@ class Page:
         )
 
     def input_text(self, text, *locator):
-         self.find_element(*locator).send_keys(text)
+        logger.info(f'Inputting text for element by {locator}')
+        self.find_element(*locator).send_keys(text)
         # self.driver.wait.until(
         #     EC.visibility_of_element_located(locator),
         #     message=f'Element by {locator} did not appear'
