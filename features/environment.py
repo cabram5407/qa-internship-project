@@ -12,7 +12,9 @@ from selenium.webdriver.chrome.options import Options
 from app.application import Application
 from support.logger import logger
 
-
+#generates test file for Allure
+# behave -f allure_behave.formatter:AllureFormatter -o test_results/features/tests/product_page.feature
+# allure serve test_results/
 
 def browser_init(context, scenario_name):
     """

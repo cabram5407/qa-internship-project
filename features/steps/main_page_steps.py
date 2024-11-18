@@ -15,3 +15,4 @@ def click_login_button(context):
     sleep(3)
     context.app.login_page.input_login_information()
     sleep(3)
+

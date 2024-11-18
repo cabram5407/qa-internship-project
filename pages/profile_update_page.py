@@ -34,14 +34,14 @@ class ProfileUpdatePage(Page):
         sleep(3)
 
 
-    def check_buttons(self):
-        close_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.CLOSE_BTN))
-        save_changes_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.SAVE_BTN))
-
-
     def right_information_present(self):
         close_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.CLOSE_BTN))
         save_changes_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.SAVE_BTN))
 
         assert close_button.is_displayed() and save_changes_button.is_displayed(), "Buttons are not visible or clickable."
         print("Close and Save Changes buttons are present and clickable")
+
+
+    def check_buttons(self):
+        close_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.CLOSE_BTN))
+        save_changes_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.SAVE_BTN))
