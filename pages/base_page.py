@@ -20,7 +20,7 @@ class Page:
         self.driver.get(url)
 
     def find_element(self, *locator):
-        logger.info(f'Searching for element by {locator}')
+        #logger.info(f'Searching for element by {locator}')
         return self.driver.find_element(*locator)
 
     def find_elements(self, *locator):
@@ -64,12 +64,9 @@ class Page:
         )
 
     def input_text(self, text, *locator):
-        logger.info(f'Inputting text for element by {locator}')
+       # logger.info(f'Inputting text for element by {locator}')
         self.find_element(*locator).send_keys(text)
-        # self.driver.wait.until(
-        #     EC.visibility_of_element_located(locator),
-        #     message=f'Element by {locator} did not appear'
-        # ).send_keys(text)
+
 
 
     def wait_for_element_to_appear(self, locator):

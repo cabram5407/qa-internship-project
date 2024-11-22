@@ -8,40 +8,81 @@ from time import sleep
 
 
 class ProfileUpdatePage(Page):
-    AGENT_NAME = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Fullname']")
-    PHONE = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='number']")
-    CMPY = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Company name']")
-    YR_JOINED = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='When Joined Company 2']")
-    CNT_EMAIL = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Email 2']")
-    LANGUAGE = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Languages']")
-    LIC_NUM = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='When joined company']")
-    SOC_MEDIA = (By.CSS_SELECTOR, "input.field-form-block.w-input[data-name='Email']")
+    AGENT_NAME = (By.ID, "Fullname")
+    PHONE = (By.ID, "number")
+    CMPY = (By.ID, "Company-name")
+    YR_JOINED = (By.ID, "When-joined-company-2")
+    CNT_EMAIL = (By.ID, "Email-2")
+    LANGUAGE = (By.ID, "Languages")
+    LIC_NUM = (By.ID, "When-joined-company")
+    SOC_MEDIA = (By.ID, "Email")
 
-    SAVE_BTN = (By.CSS_SELECTOR, "div.save-changes-button[wized='saveButtonProfile']")
-    CLOSE_BTN = (By.CSS_SELECTOR, "a.close-button.w-button[href='/settings']")
+    SAVE_BTN = (By.XPATH, "//div[@class='save-changes-button']")
+    CLOSE_BTN = (By.CSS_SELECTOR, "a.close-button.w-button")
 
 
     def input_fields(self):
-        self.driver.implicitly_wait(5)
-        self.input_text("test+Charmaine Abram+careerist", *self.AGENT_NAME)
-        self.input_text("+971+test+careerist", *self.PHONE)
-        self.input_text("Test", *self.CMPY)
-        self.input_text("2024", *self.YR_JOINED)
-        self.input_text("cabram1967@comcast.net", *self.CNT_EMAIL)
-        self.input_text("English", *self.LANGUAGE)
-        self.input_text("00000", *self.LIC_NUM)
-        self.input_text("https://www.careerist.com", *self.SOC_MEDIA)
+        self.input_text("", *self.AGENT_NAME)
+        self.input_text("", *self.PHONE)
+        self.input_text("", *self.CMPY)
+        self.input_text("", *self.YR_JOINED)
+        self.input_text("", *self.CNT_EMAIL)
+        self.input_text("", *self.LANGUAGE)
+        self.input_text("", *self.LIC_NUM)
+        self.input_text("", *self.SOC_MEDIA)
         sleep(3)
 
 
     def right_information_present(self):
-        close_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.CLOSE_BTN))
-        save_changes_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.SAVE_BTN))
+        name_field = self.find_element(*self.AGENT_NAME)
+        actual_full_name = name_field.get_attribute("value")
+        expected_full_name = "test+Charmaine Abram+careerist"
+        assert actual_full_name == expected_full_name, f"Expected {expected_full_name} but got {actual_full_name}"
 
-        assert close_button.is_displayed() and save_changes_button.is_displayed(), "Buttons are not visible or clickable."
-        print("Close and Save Changes buttons are present and clickable")
+        # phone_field = self.find_element(*self.PHONE)
+        # actual_phone = phone_field.get_attribute("value")
+        # expected_phone = "+971+test+careerist"
+        # assert actual_phone == expected_phone, f"Expected {expected_phone} but got {actual_phone}"
+        #
+        # company_field = self.find_element(*self.CMPY)
+        # actual_company = company_field.get_attribute("value")
+        # expected_company = "Test"
+        # assert actual_company == expected_company, f"Expected {expected_company} but got {actual_company}"
+        #
+        # year_joined = self.find_element(*self.YR_JOINED)
+        # actual_year = year_joined.get_attribute("value")
+        # expected_year = "2024"
+        # assert actual_year == expected_year, f"Expected {expected_year} but got {actual_year}"
+        #
+        # company_email = self.find_element(*self.CNT_EMAIL)
+        # actual_email = company_email.get_attribute("value")
+        # expected_email = "cabram1967@comcast.net"
+        # assert actual_email == expected_email, f"Expected {expected_email} but got {actual_email}"
+        #
+        # language_field = self.find_element(*self.LANGUAGE)
+        # actual_language = language_field.get_attribute("value")
+        # expected_language = "English"
+        # assert actual_language == expected_language, f"Expected {expected_language} but got {actual_language}"
+        #
+        # license_field = self.find_element(*self.LIC_NUM)
+        # actual_license = license_field.get_attribute("value")
+        # expected_license = "00000"
+        # assert actual_license == expected_license, f"Expected {expected_license} but got {actual_license}"
+        #
+        # media_field = self.find_element(*self.SOC_MEDIA)
+        # actual_media = media_field.get_attribute("value")
+        # expected_media = "https://www.careerist.com"
+        # assert actual_media == expected_media, f"Expected {expected_media} but got {actual_media}"
 
 
     def check_buttons(self):
-        close_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.CLOSE_BTN))
-        save_changes_button = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.SAVE_BTN))
+        save_changes_button = self.find_elements(*self.SAVE_BTN)
+        close_button = self.find_elements(*self.CLOSE_BTN)
+
+        save_changes_button_final = save_changes_button[1].text
+        close_button_final = close_button[1].text
+
+        assert save_changes_button_final == 'Save changes', f'Save changes button {save_changes_button_final} was not found.'
+        assert close_button_final == 'Close', f'Close button {close_button_final} was not found.'
+
+        print("Close and Save Changes buttons are present and clickable")
